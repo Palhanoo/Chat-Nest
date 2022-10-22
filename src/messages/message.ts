@@ -3,4 +3,5 @@ import { CreateMessageParams } from '../utils/types';
 
 export interface IMessageService {
   createMessage(params: CreateMessageParams): Promise<Message>;
+  getMessagesByCovnersationId(conversationId: number): Promise<Message[]>;
 }

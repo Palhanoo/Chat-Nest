@@ -1,4 +1,4 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
 import { Routes, Services } from '../utils/constants';
 import { AuthUser } from '../utils/decorator';
 import { User } from '../utils/typeorm';
@@ -18,5 +18,13 @@ export class MessageController {
     @Body() createMessageDto: CreateMessagedto,
   ) {
     return this.messageService.createMessage({ ...createMessageDto, user });
+  }
+
+  @Get(':conversationId')
+  getMessagesFromConversation(
+    @AuthUser() user: User,
+    @Param('conversationId') conversationId: number,
+  ) {
+    return this.messageService.getMessagesByCovnersationId(conversationId);
   }
 }

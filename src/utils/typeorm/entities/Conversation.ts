@@ -36,5 +36,5 @@ export class Conversation {
 
   @OneToOne(() => Message)
   @JoinColumn({ name: 'last_message_sent' })
-  lastMessageSent: string;
+  lastMessageSent: Message;
 }
