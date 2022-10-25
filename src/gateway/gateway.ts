@@ -51,7 +51,7 @@ export class MessagingGateway implements OnGatewayConnection {
       author.id === creator.id
         ? this.sessions.getUserSocket(recipient.id)
         : this.sessions.getUserSocket(creator.id);
-    recipientSocket.emit('onMessage', await payload);
-    authorSocket.emit('onMessage', await payload);
+    if (recipientSocket) recipientSocket.emit('onMessage', await payload);
+    if (authorSocket) authorSocket.emit('onMessage', await payload);
   }
 }
